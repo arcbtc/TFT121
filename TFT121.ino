@@ -46,7 +46,7 @@ String on_sub_currency = on_currency.substring(3);
   float temp;  
   String fiat;
   float satoshis;
-  String nosats;
+  String nosats = "50";
   float conversion;
   String postid;
   String data_id;
@@ -81,6 +81,7 @@ void setup() {
 
   page_nodecheck();
   on_rates();
+  pinMode(21, OUTPUT);
 //  nodecheck();
 }
 
@@ -104,6 +105,9 @@ void loop() {
               tft.println("COMPLETE");
               delay(1000);
               cntr = true;
+              digitalWrite(21, HIGH);
+              delay(500);
+              digitalWrite(21, LOW);
              }
 
            if(counta >20){
@@ -113,21 +117,6 @@ void loop() {
            }
            delay(1000);
          }
-}
-      
-      else if (virtkey == "*"){
-        tft.fillScreen(TFT_BLACK);
-        tft.setCursor(0, 0);
-        tft.setTextColor(TFT_WHITE);
-        key_val = "";
-        inputs = "";  
-        nosats = "";
-        virtkey = "";
-        cntr = "2";
-      }
-      displaysats();    
-    }
-  }
 }
 
 
